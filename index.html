@@ -15,13 +15,13 @@
                 document.cookie=c_name+ "=" +escape(value)+
                         ((expiredays==null) ? "" : ";expires="+exdate.toGMTString())
             }
-            setCookie('yc_user_id', '549ccbf3caad9301429c88a6', -1);
+            setCookie('yc_user_id', '549ccbf3caad9301429c88a6', 30);
         });
 
         var clickThis = function(){
             var cookies = decodeURIComponent(document.cookie);
             if (cookies.indexOf('yc_user_id') !== -1 || cookies.indexOf('yc user id') !== -1){
-//                    match user id
+//                match user id
                 if (cookies.match(/yc_?user_?id.+?;/)){
                     var userInfo = cookies.match(/yc_?user_?id.+?;/)[0];
                     var userId = userInfo.split('=')[1];
@@ -31,7 +31,12 @@
                     var userInfo = cookies.match(/yc_?user_?id.+?$/)[0];
                     var userId= userInfo.split('=')[1];
                 }
-                alert('signed with ' + userId);
+
+                var templateURL = 'http://localhost:2413/share/';
+//                share right now watching video number
+                var sharingVideo = 1;
+                var fullURL = templateURL + userId + '/?shareVideo=' + sharingVideo;
+                location.href = fullURL;
             }
             else {
                 alert('hello guest');
