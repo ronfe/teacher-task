@@ -15,7 +15,7 @@
                 document.cookie=c_name+ "=" +escape(value)+
                         ((expiredays==null) ? "" : ";expires="+exdate.toGMTString())
             }
-            setCookie('yc_user_id', '549ccbf3caad9301429c88a6', 30);
+            setCookie('yc_user_id', '549ccbf3caad9301429c88a6', -1);
         });
 
         var clickThis = function(){
@@ -39,12 +39,39 @@
                 location.href = fullURL;
             }
             else {
-                alert('hello guest');
+                $('#myModal').modal();
             }
         };
     </script>
 </head>
 <body>
     <a id="ss" class="btn btn-primary btn-lg" onclick="clickThis()">分享</a>
+    <!-- modal paddel -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+         aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close"
+                            data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        教师活动分享 | 洋葱数学
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    您需要成为洋葱数学教师用户才能进行分享。
+                </div>
+                <div class="modal-footer" style="border-top: none;">
+                    <button type="button" class="btn btn-default"
+                            data-dismiss="modal">关闭
+                    </button>
+                    <a class="btn btn-primary" href="http://yangcong345.com/signup">
+                        去注册
+                    </a>
+                </div>
+            </div><!-- /.modal-content -->
+        </div>
 </body>
 </html>
