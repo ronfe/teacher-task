@@ -4,12 +4,42 @@
     <meta charset="UTF-8">
     <title>教室活动分享</title>
     <link rel="stylesheet" href="http://apps.bdimg.com/libs/bootstrap/3.3.4/css/bootstrap.min.css">
-</head>
-<body>
-    <a class="btn btn-primary btn-lg">分享</a>
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="http://apps.bdimg.com/libs/bootstrap/3.3.4/js/bootstrap.min.js"></script>
     <script>
-        console.log('Here we go!!!');
+        $(document).ready(function(){
+            function setCookie(c_name,value,expiredays)
+            {
+                var exdate=new Date();
+                exdate.setDate(exdate.getDate()+expiredays);
+                document.cookie=c_name+ "=" +escape(value)+
+                        ((expiredays==null) ? "" : ";expires="+exdate.toGMTString())
+            }
+            setCookie('yc_user_id', '549ccbf3caad9301429c88a6', -1);
+        });
+
+        var clickThis = function(){
+            var cookies = decodeURIComponent(document.cookie);
+            if (cookies.indexOf('yc_user_id') !== -1 || cookies.indexOf('yc user id') !== -1){
+//                    match user id
+                if (cookies.match(/yc_?user_?id.+?;/)){
+                    var userInfo = cookies.match(/yc_?user_?id.+?;/)[0];
+                    var userId = userInfo.split('=')[1];
+                    userId = userId.split(';')[0];
+                }
+                else if (cookies.match(/yc_?user_?id.+?$/)){
+                    var userInfo = cookies.match(/yc_?user_?id.+?$/)[0];
+                    var userId= userInfo.split('=')[1];
+                }
+                alert('signed with ' + userId);
+            }
+            else {
+                alert('hello guest');
+            }
+        };
     </script>
+</head>
+<body>
+    <a id="ss" class="btn btn-primary btn-lg" onclick="clickThis()">分享</a>
 </body>
 </html>
